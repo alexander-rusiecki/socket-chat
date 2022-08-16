@@ -16,7 +16,11 @@ const io = new Server(httpServer, {
 });
 
 io.on('connection', socket => {
-  console.log(socket);
+  console.log(`User ${socket.id} connected`);
+
+  socket.on('chat message', msg => {
+    console.log(msg);
+  });
 });
 
-httpServer.listen(3000);
+httpServer.listen(4000, () => console.log('RUNNING...'));
