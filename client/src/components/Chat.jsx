@@ -16,6 +16,8 @@ function Chat({ socket, username, roomName }) {
         id: nanoid(),
       };
       await socket.emit('send-message', messageData);
+      setMessageList(prev => [...prev, messageData]);
+      setChatMessage('');
     }
   }
 
@@ -33,8 +35,21 @@ function Chat({ socket, username, roomName }) {
       </div>
       <div className="chat-window">
         <ul>
-          {messageList.map(message => (
-            <li key={message.id}>{message.message}</li>
+          {messageList.map(messageData => (
+            <li
+              key={messageData.id}
+              className={username === messageData.username ? 'you' : 'other'}
+            >
+              <div>
+                <p>{messageData.username}</p>
+              </div>
+              <div>
+                <h3>{messageData.message}</h3>
+              </div>
+              <div>
+                <small>{messageData.createdAt}</small>
+              </div>
+            </li>
           ))}
         </ul>
       </div>

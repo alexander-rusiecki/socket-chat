@@ -74,7 +74,7 @@ code {
 
 .chat-box {
   height: 80%;
-  width: 30%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -95,8 +95,9 @@ code {
 .chat-window {
   height: 80%;
   width: 100%;
-  border: 1px solid rgb(215, 213, 213);
-  border-radius: 0.3em;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 form {
@@ -135,10 +136,29 @@ button {
   -moz-appearance: none;
 }
 
+ul {
+  display: flex;
+  flex-direction: column;
+}
+
 li {
   list-style: none;
-  border: 1px solid grey;
   padding: 0.3em 1em;
   margin: 0.3em;
-  border-radius: 0.1em;
+  border-radius: 0.8em;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.you {
+  background-color: green;
+  color: white;
+  justify-content: flex-end;
+}
+
+.other {
+  background-color: #f5f5f5;
+  color: black;
+  justify-content: flex-start;
 }
