@@ -25,7 +25,7 @@ function App() {
     <>
       {!showChat ? (
         <div className="join">
-          <h1>Join a room</h1>
+          <h1>Create a room</h1>
           <form onSubmit={joinRoom}>
             <input
               type="text"

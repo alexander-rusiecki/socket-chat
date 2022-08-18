@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 function Chat({ socket, username, roomName }) {
   const [chatMessage, setChatMessage] = useState('');
@@ -30,27 +31,31 @@ function Chat({ socket, username, roomName }) {
   return (
     <div className="chat-box">
       <div className="chat-header">
-        <p>Connected to room: 1</p>
-        <p>User ID: 13</p>
+        <h3>
+          Hi {username}, you are connected to room: {roomName}
+        </h3>
       </div>
       <div className="chat-window">
         <ul>
-          {messageList.map(messageData => (
-            <li
-              key={messageData.id}
-              className={username === messageData.username ? 'you' : 'other'}
-            >
-              <div>
-                <p>{messageData.username}</p>
-              </div>
-              <div>
-                <h3>{messageData.message}</h3>
-              </div>
-              <div>
-                <small>{messageData.createdAt}</small>
-              </div>
-            </li>
-          ))}
+          <ScrollToBottom className="message-list">
+            {messageList.map(messageData => (
+              <li
+                key={messageData.id}
+                className={username === messageData.username ? 'you' : 'other'}
+              >
+                <div>
+                  <h3>{messageData.message}</h3>
+                </div>
+
+                <div>
+                  <small>
+                    from: {messageData.username}
+                    on: {messageData.createdAt}
+                  </small>
+                </div>
+              </li>
+            ))}
+          </ScrollToBottom>
         </ul>
       </div>
       <form onSubmit={sendMessage}>
