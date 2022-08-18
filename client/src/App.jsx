@@ -3,9 +3,9 @@ import oi from 'socket.io-client';
 import Chat from './components/Chat';
 
 const socket = oi(
-  process.env === 'production'
-    ? 'https://alex-socket-chat.herokuapp.com/'
-    : 'http://localhost:4000'
+  process.env === 'development'
+    ? 'http://localhost:4000'
+    : 'https://alex-socket-chat.herokuapp.com/'
 );
 
 function App() {
