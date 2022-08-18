@@ -2,7 +2,7 @@ const express = require('express');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
-
+require('dotenv').config();
 const app = express();
 const httpServer = createServer(app);
 
@@ -10,7 +10,7 @@ app.use(cors());
 
 const io = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://socket-chat-rho.vercel.app/'],
     methods: ['GET', 'POST'],
   },
 });
@@ -37,17 +37,15 @@ io.on('connection', socket => {
   socket.on(
     'send-message',
     ({ username, roomName, message, createdAt, id }) => {
-      socket
-        .to(roomName)
-        .emit('receive-message', {
-          username,
-          roomName,
-          message,
-          createdAt,
-          id,
-        });
+      socket.to(roomName).emit('receive-message', {
+        username,
+        roomName,
+        message,
+        createdAt,
+        id,
+      });
     }
   );
 });
 
-httpServer.listen(4000, () => console.log('Socket open...'));
+httpServer.listen(process.env.PORT, () => console.log('Socket open...'));
