@@ -5,7 +5,7 @@ import Chat from './components/Chat';
 const socket = oi(
   process.env === 'development'
     ? 'http://localhost:4000'
-    : 'https://alex-socket-chat.herokuapp.com/',
+    : 'https://alex-socket-chat.herokuapp.com',
   {
     withCredentials: true,
   }
