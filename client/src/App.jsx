@@ -2,7 +2,11 @@ import { useState } from 'react';
 import oi from 'socket.io-client';
 import Chat from './components/Chat';
 
-const socket = oi('http://localhost:4000');
+const socket = oi(
+  process.env === 'production'
+    ? 'https://alex-socket-chat.herokuapp.com/'
+    : 'http://localhost:4000'
+);
 
 function App() {
   const [username, setUsername] = useState('');
