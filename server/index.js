@@ -10,7 +10,7 @@ app.use(cors());
 
 const io = new Server(httpServer, {
   cors: {
-    origin: ['http://localhost:3000', 'https://socket-chat-rho.vercel.app/'],
+    origin: ['http://localhost:3000', 'https://socket-chat-rho.vercel.app'],
     methods: ['GET', 'POST'],
     credentials: true,
   },
