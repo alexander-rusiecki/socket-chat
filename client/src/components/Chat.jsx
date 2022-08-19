@@ -31,29 +31,35 @@ function Chat({ socket, username, roomName }) {
   return (
     <div className="chat-box">
       <div className="chat-header">
-        <h3>
-          Hi {username}, you are connected to room: {roomName}
-        </h3>
+        <p>
+          Hi <span>{username}</span>, you are connected to room:{' '}
+          <span>{roomName}</span>
+        </p>
       </div>
       <div className="chat-window">
         <ul>
-          <ScrollToBottom className="message-list">
+          <ScrollToBottom>
             {messageList.map(messageData => (
-              <li
+              <div
                 key={messageData.id}
-                className={username === messageData.username ? 'you' : 'other'}
+                className={
+                  username === messageData.username
+                    ? 'chat-list you'
+                    : 'chat-list other'
+                }
               >
-                <div>
-                  <h3>{messageData.message}</h3>
-                </div>
+                <li>
+                  <div>
+                    <h3>{messageData.message}</h3>
+                  </div>
 
-                <div>
-                  <small>
-                    from: {messageData.username}
-                    on: {messageData.createdAt}
-                  </small>
-                </div>
-              </li>
+                  <div className="sender">
+                    <small>
+                      {messageData.username} | {messageData.createdAt}
+                    </small>
+                  </div>
+                </li>
+              </div>
             ))}
           </ScrollToBottom>
         </ul>
